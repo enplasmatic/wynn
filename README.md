@@ -184,7 +184,8 @@ Hello world!
 ```
 
 ## define
-Alternatively, you can use the `define` keyword to define a **strict** macro substitution. This will literally replace all instances of a variable "three" with "3" and is highly unsafe. It is not recommended to use this unless you know what you're doing, because it can seriously mess up code. This keyword requires the following format: `define NEW_NAME :: OLD_NAME` The new name of the macro is on the left side of the double colon, while the old name (name to replace with) is on the right side of the double colon.
+Alternatively, you can use the `define` keyword to define a **strict** macro substitution. This will literally replace all instances of a variable "three" with "3" and is highly unsafe. This keyword requires the following format: `define NEW_NAME :: OLD_NAME` The new name of the macro is on the left side of the double colon, while the old name (name to replace with) is on the right side of the double colon.
+> It is not recommended to use this unless you know what you're doing, because it can seriously mess up code. 
 ```cpp
 define three :: 3;
 println(threethree);
@@ -192,6 +193,32 @@ println(threethree);
 That outputs the following:
 ```
 33
+```
+
+## static / end static
+A static window in a Wynn code file is a piece of code that can only execute when that file is run. When using `include "FILENAME.w"` anything encapsulated inside a static window will not be added to the file. The `static` keyword opens a static window, and the `end static` keyword closes the most recent static window.
+```cpp
+(file1.w)
+static;
+new Number = 100;
+end static;
+```
+```lua
+(file2.w, this will throw an error)
+include "file1.w";
+println(Number);
+```
+
+## expand / expansion
+An expanded function is a function that expands inline wherever it is declared, similar to `inline` in C/C++. These are one line statements that can return a simple type (`int`, `boolean`, `string`, `float`). Create an expansion by using `expand NAME(args) -> expression`. It is important to remember that the `new` keyword is restricted inside of the argument declaration of the expansion.\
+`expand NAME(new args) -> return expression` **Wrong**! \
+`expand NAME(args) -> expression` **Correct**! \
+
+Declare a variable that is created via expansion using `new expansion NAME = EXPANDED_FUNC_NAME(ARGS)`. Below is an example of the expand / expansion keywords in action.
+```cpp
+expand square(x) -> x*x;
+new expansion f = square(5);
+println(f);
 ```
 ## throw
 Use `throw` to throw an internal error in the system and stop execution of the code. You can put a string next to it so that you can log your error message.
@@ -204,6 +231,34 @@ That outputs the following:
 Callback: Oh no!
 ```
 
+## break
+
+> This keyword has been deprecated and is only here for my historical / completion purposes.
+
+This does the same thing as the `break` keyword in other languages too; it simply breaks out of a loop. ***This keyword has been deprecated*** and is only still a keyword so that other older programs using it will not lose functionality. However, using it *may cause undefined behavior*, so use it at your own risk. 
+```cpp
+for(new i = 0, i<100, new i+=1);
+    println(fmt(i, '\n'));
+    if (i>=50);
+        break;
+```
+That outputs the following:
+```
+1
+2
+3
+...
+48
+49
+50
+```
+## ptr
+
+> This keyword has been deprecated and is only here for my historical / completion purposes.
+
+**Never** use this. I am only putting this here so that it is recognized as a keyword. This is only ever used by the interpreter and is not meant for you to use. 
+
+> If you must know, it jumps to a line with the specified index [0-indexed]. It's very hard to pull off using this correctly, so I will not provide an example for this keyword.
 
 # Functions
 ## println()
