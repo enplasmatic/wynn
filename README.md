@@ -261,6 +261,28 @@ That outputs the following:
 > If you must know, it jumps to a line with the specified index [0-indexed]. It's very hard to pull off using this correctly, so I will not provide an example for this keyword.
 
 # Functions
+## fmt()
+Given some arguments, it converts all of its arguments into strings and then concatenates them (joins them together). 
+```cpp
+println(fmt(3,'\n',4));
+```
+That outputs the following:
+```
+3
+4
+```
+
+## ?()
+The ternary operator, in the form of `?(X, Y, Z)` does the following:
+> If condition `X` is true, the function is reduced to `Y`.
+> Else, the function is reduced to `Z`
+
+While this function seems simple, it can greatly increase coding speed and even readability in the long run!
+You can also use the word `TERNARY_OPERATOR(X, Y, Z)` instead of `?(X, Y, Z)` if you'd like; they are the same thing.
+```cpp
+println(?(3==4, "YES", "NO"));
+```
+
 ## println()
 Prints something to the standard output stream.
 ```cpp
@@ -269,4 +291,63 @@ println("Hello world");
 That outputs the following:
 ```
 Hello world
+```
+
+## scanln()
+Gets input from the standard input stream.
+```cpp
+new text = scanln();
+println(text);
+```
+
+## scanb(N)
+Gets `N` bytes of input from the standard input stream.
+```cpp
+new text = scanb(3);
+println(text);
+```
+
+## scanf(N)
+Returns the entire input stream as a vector of strings.
+```cpp
+new text = scanf();
+println(text);
+```
+
+## system(command)
+Runs the operating system command given.
+```cpp
+system("clear");
+```
+
+## ioconnect(connected)
+Disconnects/connects the iostream. Everything will be cached instead of printed into the terminal if `connected=False` and everything currently cached will be printed if `connected=True`
+> This is useful when trying to look at competitive programming / different test cases for an algorithm.
+```
+ioconnect(False);
+println(111);
+ioconnect(True);
+```
+
+## sizeof(container)
+Returns the size of the container.
+```
+println(sizeof([3,4,5]))
+```
+This outputs
+```
+3
+```
+
+## minof(container) / maxof(container)
+Returns the minimum / maximum value of the container.
+```
+println(minof([3,4,5]));
+println("\n");
+println(maxof([3,4,5]));
+```
+This outputs
+```
+3
+5
 ```
