@@ -1,10 +1,10 @@
 # Wynn: A new way to code
-A programming language with the simplicity of python with the functionality of a language like C. Developer-friendly and easily readable! \
-This minimalistic language encourages creativity and out-of-the-box thinking, with barebone functions and uncomplicated syntax! \
+A programming language with the simplicity of Python and the functionality of a language like C.** Developer-friendly** and **easily readable**! \
+This minimalistic language encourages **creativity** and out-of-the-box thinking, with **bare-bone** functions and uncomplicated syntax! \
 Below is a guide of keywords and functions to use in the language.
 
 # Structure
-Wynn is an interpreted, high-level, dynamically-typed, general purpose programming language. Similar to Python, it uses indentation instead of brackets. It can be used for a wide variety of things, but is typically aimed towards statistical analysis, quick coding (prototyping), and simple app / game development. 
+Wynn is an **interpreted**, **high-level**, dynamically-typed, **general purpose** programming language. Similar to Python, it uses indentation instead of brackets. It can be used for a wide variety of things, but is typically aimed towards statistical analysis, quick coding (prototyping), and simple app / game development. 
 
 # Basic Keywords
 
@@ -127,6 +127,27 @@ enum Days{
 println(Days.MONDAY);
 ```
 
+## struct
+Declare a structure of values that groups together variables of potentially different types under a single name. You can declare an instance of a `struct` using the following format: `new <StructName> VARIABLE_NAME = [arg1, arg2... argN]` Structs are useful for template variables that can be copied and declared under similar circumstances but different values. Below is an example of the modifiable values of a `struct`
+```cpp
+struct Point{
+    new x, new y
+};
+new <Point> origin = [0,0];
+new origin.x = 4;
+new origin.y = -104;
+println(fmt(origin.x, ', ', origin.y));
+```
+
+## in/is
+The keyword `in` is used for the condition checking if a value is inside a container. The keyword `is` is used to check if something points to the same location in memory as another value. These have the exact same functionality as they do in Python.
+```py
+println(3 in [3,4,5]);
+new third = 3;
+new three = 3;
+println("\n");
+println(third is three);
+```
 # Advanced Keywords
 
 ## using
