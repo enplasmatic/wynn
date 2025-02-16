@@ -76,6 +76,16 @@ These all correspond to their logical operator equivalent. If you do not know wh
 println(fmt(1 and 1, '\n', (not 0) or 1));
 ```
 
+## in/is
+The keyword `in` is used for the condition checking if a value is inside a container. The keyword `is` is used to check if something points to the same location in memory as another value. These have the exact same functionality as they do in Python.
+```py
+println(3 in [3,4,5]);
+new third = 3;
+new three = 3;
+println("\n");
+println(third is three);
+```
+
 ## switch / case / else
 These keywords are used for switch statements. They are pretty self-explanatory with a few examples:
 ```cpp
@@ -118,17 +128,33 @@ setat END;
 free END;
 ```
 
+## include
+The keyword `include` tells the interpreter to add all of the contents of a specified file into the current running file before execution.
+```py
+(file1.w)
+new Number = 100;
+```
+```lua
+(file2.w)
+include "file1.w";
+println(Number);
+```
+
 ## enum
-Declare an enumeration [group] of constants. Can be accessed using the format `[NAME].[VARIABLE]`.
+Declare an enumeration [group] of integer constants. You can define them to certain integer values, or leave them blank for their values to default to their indices. If you make the first value `1`, for example, all the other values will be `2, 3, 4...` and so on if not explicitly declared. Enum constants be accessed using the format `[NAME].[VARIABLE]`.
 ```cpp
 enum Days{
     SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
 };
 println(Days.MONDAY);
 ```
+That outputs the following:
+```
+1
+```
 
 ## struct
-Declare a structure of values that groups together variables of potentially different types under a single name. You can declare an instance of a `struct` using the following format: `new <StructName> VARIABLE_NAME = [arg1, arg2... argN]` Structs are useful for template variables that can be copied and declared under similar circumstances but different values. Below is an example of the modifiable values of a `struct`
+Declare a structure of values that groups together variables of potentially different types under a single name. You can declare an instance of a `struct` using the following format: `new <StructName> VARIABLE_NAME = [arg1, arg2... argN]` Structs are useful for template variables that can be copied and declared under similar circumstances but different values. Below is an example of the modifiable values of a `struct`.
 ```cpp
 struct Point{
     new x, new y
@@ -138,20 +164,16 @@ new origin.x = 4;
 new origin.y = -104;
 println(fmt(origin.x, ', ', origin.y));
 ```
-
-## in/is
-The keyword `in` is used for the condition checking if a value is inside a container. The keyword `is` is used to check if something points to the same location in memory as another value. These have the exact same functionality as they do in Python.
-```py
-println(3 in [3,4,5]);
-new third = 3;
-new three = 3;
-println("\n");
-println(third is three);
+That outputs the following:
 ```
+4, -104
+```
+
+
 # Advanced Keywords
 
 ## using
-Use the `using` keyword to define a macro substitution. It is an alternative way to define a immutable variable by the preprocessor.
+Use the `using` keyword to define a macro substitution. It is an alternative way to define a immutable variable by the preprocessor. This keyword requires the following format: `using NEW_NAME :: OLD_NAME` The new name of the macro is on the left side of the double colon, while the old name (name to replace with) is on the right side of the double colon.
 ```cpp
 using World :: "Hello world!";
 println(World);
@@ -160,6 +182,28 @@ That outputs the following:
 ```
 Hello world!
 ```
+
+## define
+Alternatively, you can use the `define` keyword to define a **strict** macro substitution. This will literally replace all instances of a variable "three" with "3" and is highly unsafe. It is not recommended to use this unless you know what you're doing, because it can seriously mess up code. This keyword requires the following format: `define NEW_NAME :: OLD_NAME` The new name of the macro is on the left side of the double colon, while the old name (name to replace with) is on the right side of the double colon.
+```cpp
+define three :: 3;
+println(threethree);
+```
+That outputs the following:
+```
+33
+```
+## throw
+Use `throw` to throw an internal error in the system and stop execution of the code. You can put a string next to it so that you can log your error message.
+```cpp
+throw "Oh no!";
+```
+That outputs the following:
+```
+ -- internal error thrown --
+Callback: Oh no!
+```
+
 
 # Functions
 ## println()
