@@ -1,5 +1,5 @@
 # Wynn: A new way to code
-A programming language with the simplicity of Python and the functionality of a language like C.** Developer-friendly** and **easily readable**! \
+A programming language with the simplicity of Python and the functionality of a language like C. ** Developer-friendly** and **easily readable**! \
 This minimalistic language encourages **creativity** and out-of-the-box thinking, with **bare-bone** functions and uncomplicated syntax! \
 Below is a guide of keywords and functions to use in the language.
 
