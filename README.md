@@ -224,7 +224,7 @@ println(Number);
 ## expand / expansion
 An expanded function is a function that expands inline wherever it is declared, similar to `inline` in C/C++. These are one line statements that can return a simple type (`int`, `boolean`, `string`, `float`). Create an expansion by using `expand NAME(args) -> expression`. It is important to remember that the `new` keyword is restricted inside of the argument declaration of the expansion.\
 `expand NAME(new args) -> return expression` **Wrong**! \
-`expand NAME(args) -> expression` **Correct**! \
+`expand NAME(args) -> expression` **Correct**!
 
 Declare a variable that is created via expansion using `new expansion NAME = EXPANDED_FUNC_NAME(ARGS)`. Below is an example of the expand / expansion keywords in action.
 ```cpp
