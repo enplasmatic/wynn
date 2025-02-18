@@ -290,7 +290,7 @@ The ternary operator, in the form of `?(X, Y, Z)` does the following:
 > Else, the function is reduced to `Z`
 
 While this function seems simple, it can greatly increase coding speed and even readability in the long run!
-You can also use the word `TERNARY_OPERATOR(X, Y, Z)` instead of `?(X, Y, Z)` if you'd like; they are the same thing.
+You can also use the function `TERNARY_OPERATOR(X, Y, Z)` instead of `?(X, Y, Z)` if you'd like; they are the same thing.
 ```cpp
 println(?(3==4, "YES", "NO"));
 ```
@@ -335,7 +335,7 @@ system("clear");
 ## ioconnect(connected)
 Disconnects/connects the iostream. Everything will be cached instead of printed into the terminal if `connected=False` and everything currently cached will be printed if `connected=True`
 > This is useful when trying to look at competitive programming / different test cases for an algorithm.
-```
+```cpp
 ioconnect(False);
 println(111);
 ioconnect(True);
@@ -343,8 +343,8 @@ ioconnect(True);
 
 ## sizeof(container)
 Returns the size of the container.
-```
-println(sizeof([3,4,5]))
+```cpp
+println(sizeof([3,4,5]));
 ```
 This outputs
 ```
@@ -353,7 +353,7 @@ This outputs
 
 ## minof(container) / maxof(container)
 Returns the minimum / maximum value of the container.
-```
+```cpp
 println(minof([3,4,5]));
 println("\n");
 println(maxof([3,4,5]));
