@@ -197,7 +197,7 @@ That outputs the following:
 
 ## derive
 Create a new copied variable of the same type as another one. 
-```
+```cpp
 new <vector> x = [34,6,6464];
 new derive y = x;
 println(y)
