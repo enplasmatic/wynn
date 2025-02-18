@@ -195,6 +195,18 @@ That outputs the following:
 33
 ```
 
+## derive
+Create a new copied variable of the same type as another one. 
+```
+new <vector> x = [34,6,6464];
+new derive y = x;
+println(y)
+```
+That outputs the following:
+```
+vec<[34,6,6464]>
+```
+
 ## static / end static
 A static window in a Wynn code file is a piece of code that can only execute when that file is run. When using `include "FILENAME.w"` anything encapsulated inside a static window will not be added to the file. The `static` keyword opens a static window, and the `end static` keyword closes the most recent static window.
 ```cpp
