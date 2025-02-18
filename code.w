@@ -1,1 +1,12 @@
-println(sizeof([3,4,5]));
+new <Gradbit> screen = [400, 400, "Mouse Ball"];
+screen.construct(120);
+new imm black = (0,0,0);
+new imm cyan = (0,255,255);
+macro print(new derive content);
+    println(fmt(content, "\n"));
+while True;
+    new <vector> position = GradbitMouse.pos();
+    screen.erase(black);
+    call print(position);
+    Blackbody.circle(screen.gradbits(), cyan, position, 4);
+    screen.build();

@@ -9,9 +9,14 @@ FUNCS = {
     fstream, # file bound
     fmt, sizeof, maxof, minof, TERNARY_OPERATOR, vars, type, hashed, # misc
     Alog, Bound, Integer, Rand, Container, String, Time, # classes
-    Gradbit, GradbitGroup, GradbitMouse, GradbitSprite, Timer, # gradbits
+    Gradbit, GradbitGroup, GradbitMouse, GradbitSprite, Timer, Blackbody, # gradbits
     array, vector, queue, heap, set, sset, multiset, hashmap, multimap, pair, couple, # containers
 }
+import data.string
+for i in dir(data.string):
+    if i.startswith("_"): continue
+    x = eval(i)
+    FUNCS.add(x)
 
 TYPERS = set()
 for f in FUNCS:
@@ -19,7 +24,7 @@ for f in FUNCS:
         TYPERS.add(f)
 TYPERS.remove(vars)
 ops = ["+=", "-=", "*=", "/=", "//=", ">>=", "&=", "|=", "<<=", "%="]
-
+TYPERS_TUP = tuple(TYPERS)
 DFDP = {}
 for f in FUNCS:
     DFDP[str(f.__name__)] = f
@@ -197,6 +202,8 @@ def readln(line: str, index: int, code):
             
             lmao = tryln(value)
             if isinstance(lmao, grouping):
+                if isinstance(lmao, TYPERS_TUP):
+                    lmao = value
                 if isinstance(lmao, str):
                     lmao = '"'+lmao+'"'
             else:
@@ -250,6 +257,8 @@ def readln(line: str, index: int, code):
                     isImm(name.strip())
                     lmao = tryln(value)
                     if isinstance(lmao, grouping):
+                        if isinstance(lmao, TYPERS_TUP):
+                            lmao = value
                         if isinstance(lmao, str):
                             lmao = '"'+lmao+'"'
                         runln(f"{name.strip()} = ({name.strip()}) {op[:-1]} ({lmao})")
@@ -263,8 +272,11 @@ def readln(line: str, index: int, code):
                 isImm(name.strip())
                 lmao = tryln(value)
                 if isinstance(lmao, grouping):
-                    if isinstance(lmao, str):
+                    if isinstance(lmao, TYPERS_TUP):
+                        lmao = value.strip()
+                    elif isinstance(lmao, str):
                         lmao = '"'+lmao+'"'
+
                     runln(f"{name.strip()} = {lmao}")
                 else:
                     raise TypeError("Inappropriate argument type given to initialize variable")
@@ -587,7 +599,7 @@ def preln(line: str, index: int, code):
         if line == "switch":
             firstIf.pop()
             lastSwitch.pop()
-        code[index] = (" "*indent)+"voided"
+        code[index] = (" "*indent)+"void"
 
     elif line.startswith("setat "):
         line = line.replace("setat", "", 1).strip()
